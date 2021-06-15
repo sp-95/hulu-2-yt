@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
 import Header from '../components/Header'
+import Nav from '../components/Nav'
 
 export default function Home(): React.ReactElement {
   return (
@@ -15,6 +16,7 @@ export default function Home(): React.ReactElement {
       <Header />
 
       {/* Nav */}
+      <Nav />
 
       {/* Results */}
     </div>
