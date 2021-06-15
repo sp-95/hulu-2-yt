@@ -13,8 +13,9 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = (
   const { result } = props
   const {
     backdrop_path: backdropPath,
+    first_air_date: firstAirDate,
     media_type: mediaType,
-    original_title: originalTitle,
+    name,
     overview,
     release_date: releaseDate,
     title,
@@ -35,11 +36,12 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = (
         <p className="truncate max-w-md">{overview}</p>
 
         <h2 className="mt-1 text-2xl text-white transition-all duration-100 ease-in-out group-hover:font-bold">
-          {title || originalTitle}
+          {title || name}
         </h2>
 
         <p className="flex items-center opacity-0 group-hover:opacity-100">
           {mediaType && `${mediaType} •`} {releaseDate && `${releaseDate} •`}{' '}
+          {firstAirDate && `${firstAirDate} •`}{' '}
           <ThumbUpIcon className="h-5 mx-2" /> {voteCount}
         </p>
       </div>
