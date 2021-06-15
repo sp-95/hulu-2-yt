@@ -1,19 +1,20 @@
+/* eslint-disable camelcase */
 interface IMovieRating {
   adult: boolean
-  backdropPath: string
-  genreIds: Array<number>
+  backdrop_path: string
+  genre_ids: Array<number>
   id: number
-  mediaType: string
-  originalLanguage: string
-  originalTitle: string
+  media_type: string
+  original_language: string
+  original_title: string
   overview: string
   popularity: number
-  posterPath: string
-  releaseDate: string
+  poster_path: string
+  release_date: string
   title: string
   video: boolean
-  voteAverage: number
-  voteCount: number
+  vote_average: number
+  vote_count: number
 }
 
 export default IMovieRating
