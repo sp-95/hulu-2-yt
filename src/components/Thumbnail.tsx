@@ -1,15 +1,16 @@
 import { ThumbUpIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
-import React from 'react'
+import React, { forwardRef } from 'react'
 import IMovieRating from '../types/movie_ratings'
 
 export interface IThumbnailProps {
   result: IMovieRating
 }
 
-const Thumbnail: React.FunctionComponent<IThumbnailProps> = (
-  props: IThumbnailProps
-) => {
+const Thumbnail: React.FunctionComponent<IThumbnailProps> = forwardRef<
+  HTMLDivElement,
+  IThumbnailProps
+>((props: IThumbnailProps, ref) => {
   const { result } = props
   const {
     backdrop_path: backdropPath,
@@ -24,7 +25,10 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = (
   const BASE_URL = 'https://image.tmdb.org/t/p/original'
 
   return (
-    <div className="p-2 group cursor-pointer transition duration-100 ease-in transform sm:hover:scale-105 hover:z-50">
+    <div
+      ref={ref}
+      className="p-2 group cursor-pointer transition duration-100 ease-in transform sm:hover:scale-105 hover:z-50"
+    >
       <Image
         layout="responsive"
         src={`${BASE_URL}${backdropPath}`}
@@ -40,13 +44,14 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = (
         </h2>
 
         <p className="flex items-center opacity-0 group-hover:opacity-100">
-          {mediaType && `${mediaType} •`} {releaseDate && `${releaseDate} •`}{' '}
-          {firstAirDate && `${firstAirDate} •`}{' '}
+          {mediaType && `${mediaType} •`}{' '}
+          {(releaseDate && `${releaseDate} •`) ||
+            (firstAirDate && `${firstAirDate} •`)}{' '}
           <ThumbUpIcon className="h-5 mx-2" /> {voteCount}
         </p>
       </div>
     </div>
   )
-}
+})
 
 export default Thumbnail
