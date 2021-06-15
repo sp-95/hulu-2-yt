@@ -1,12 +1,12 @@
 import React, { SVGProps } from 'react'
 
-export interface HeaderItemProps {
+export interface IHeaderItemProps {
   title: string
   Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
 }
 
-const HeaderItem: React.FunctionComponent<HeaderItemProps> = (
-  props: HeaderItemProps
+const HeaderItem: React.FunctionComponent<IHeaderItemProps> = (
+  props: IHeaderItemProps
 ) => {
   const { Icon, title } = props
   return (

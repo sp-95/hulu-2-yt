@@ -1,9 +1,18 @@
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import React from 'react'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
+import Results from '../components/Results'
+import IMovieRating from '../components/types/movie_ratings'
+import requests from '../utils/requests'
 
-export default function Home(): React.ReactElement {
+export interface IHomeProps {
+  results: Array<IMovieRating>
+}
+
+export default function Home(props: IHomeProps): React.ReactElement {
+  const { results } = props
   return (
     <div>
       <Head>
@@ -12,13 +21,25 @@ export default function Home(): React.ReactElement {
         <link rel="icon" href="/images/favicon.ico" />
       </Head>
 
-      {/* Header */}
       <Header />
-
-      {/* Nav */}
       <Nav />
-
-      {/* Results */}
+      <Results results={results} />
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { genre } = context.query
+
+  const request = await fetch(
+    `https://api.themoviedb.org/3${
+      requests[genre]?.url || requests.fetchTrending.url
+    }`
+  ).then((res) => res.json())
+
+  return {
+    props: {
+      results: request.results,
+    },
+  }
 }
