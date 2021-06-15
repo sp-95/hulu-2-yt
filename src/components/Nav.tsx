@@ -1,4 +1,4 @@
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/router'
 import React from 'react'
 import requests from '../utils/requests'
 
@@ -12,7 +12,7 @@ const Nav: React.FunctionComponent = () => {
           <button
             type="button"
             key={key}
-            onClick={() => router.push(`/?genre=${key}`)}
+            onClick={() => router.push(`?genre=${key}`)}
             className="focus:outline-none transition duration-100 transform hover:scale-125 active:text-red-500"
           >
             {title}

@@ -7,10 +7,16 @@ module.exports = {
       colors: {
         primary: '#06202A',
       },
+      screens: {
+        '3xl': '1920px',
+      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('tailwind-scrollbar-hide')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar-hide'),
+  ],
 }
