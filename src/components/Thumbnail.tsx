@@ -1,7 +1,7 @@
 import { ThumbUpIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 import React from 'react'
-import IMovieRating from './types/movie_ratings'
+import IMovieRating from '../types/movie_ratings'
 
 export interface IThumbnailProps {
   result: IMovieRating

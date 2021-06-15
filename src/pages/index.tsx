@@ -4,7 +4,7 @@ import React from 'react'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Results from '../components/Results'
-import IMovieRating from '../components/types/movie_ratings'
+import IMovieRating from '../types/movie_ratings'
 import requests from '../utils/requests'
 
 export interface IHomeProps {
@@ -31,15 +31,21 @@ export default function Home(props: IHomeProps): React.ReactElement {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { genre } = context.query
 
-  const request = await fetch(
-    `https://api.themoviedb.org/3${
-      requests[genre]?.url || requests.fetchTrending.url
-    }`
-  ).then((res) => res.json())
+  let { url } = requests.fetchTrending
+  if (typeof genre === 'string') url = requests[genre].url
+
+  let results = []
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3${url}`)
+    const data = await response.json()
+    results = data.results
+  } catch (error) {
+    console.log(error)
+  }
 
   return {
     props: {
-      results: request.results,
+      results,
     },
   }
 }

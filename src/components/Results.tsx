@@ -1,6 +1,6 @@
 import React from 'react'
+import IMovieRating from '../types/movie_ratings'
 import Thumbnail from './Thumbnail'
-import IMovieRating from './types/movie_ratings'
 
 export interface IResultsProps {
   results: Array<IMovieRating>
